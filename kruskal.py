@@ -47,7 +47,7 @@ def kruskal(graph, vertices):
         if disjoint_set.find(vertex1) != disjoint_set.find(vertex2):
             disjoint_set.union(vertex1, vertex2)
             minimum_spanning_tree.append((vertex1, vertex2, {'weight': weight}))
-
+    del edges,disjoint_set
     return minimum_spanning_tree
 
 def generate_random_graph(n, density):
@@ -59,32 +59,20 @@ def generate_random_graph(n, density):
         neighbors = random.sample(vertices[:i] + vertices[i+1:], int(density * n))
         weights = [random.randint(1, 100) for _ in range(len(neighbors))]
         graph[vertices[i]] = list(zip(neighbors, weights))
-
+    del vertices
     return graph
 
 def save_graph_plot(graph, minimum_spanning_tree, num_nodes, density, directory):
-    G = nx.Graph()
-    for vertex, neighbors in graph.items():
-        for neighbor, weight in neighbors:
-            G.add_edge(vertex, neighbor, weight=weight)
-
-    pos = nx.spring_layout(G)
-    plt.figure(figsize=(10, 8))
-    nx.draw(G, pos, with_labels=True, font_weight='bold', node_size=700, node_color='skyblue', font_size=8)
-    nx.draw_networkx_edge_labels(G, pos, edge_labels={(e[0], e[1]): e[2]['weight'] for e in G.edges(data=True)})
-    plt.title(f"Original Graph (Nodes: {num_nodes}, Density: {density})")
-    plt.savefig(os.path.join(directory, str(num_nodes)+"_"+str(density)+"graph.png"))
-    plt.close()
-
     H = nx.Graph()
     H.add_edges_from(minimum_spanning_tree)
     pos_h = nx.spring_layout(H)
     plt.figure(figsize=(10, 8))
-    nx.draw(H, pos_h, with_labels=True, font_weight='bold', node_size=700, node_color='lightcoral', font_size=8)
-    nx.draw_networkx_edge_labels(H, pos_h, edge_labels={(e[0], e[1]): e[2]['weight'] for e in H.edges(data=True)})
+    nx.draw(H, pos_h, with_labels=True, font_weight='bold', node_size=70, node_color='lightcoral', font_size=3)
+    #nx.draw_networkx_edge_labels(H, pos_h,edge_labels={(e[0], e[1]): e[2]['weight'] for e in H.edges(data=True)})
     plt.title(f"Minimum Spanning Tree (Nodes: {num_nodes}, Density: {density})")
     plt.savefig(os.path.join(directory, str(num_nodes)+"_"+str(density)+"mst.png"))
     plt.close()
+    del H
 
 def measure_execution_time_kruskal(graph, vertices):
     start_time = time.time()
@@ -93,7 +81,7 @@ def measure_execution_time_kruskal(graph, vertices):
     return mst,end_time - start_time
 
 # Test cases: n values and density values
-n_values = [100, 1000, 10000, 100000, 1000000]
+n_values = [100, 1000, 5000, 10000]
 density_values = [0.1,0.6]
 
 NN=[]
@@ -111,8 +99,8 @@ for n in n_values:
         NN.append(n)
         ddensity.append(density)
         EXEC_TIME.append(execution_time)
-        print(f"Graph with n={n} vertices and density={density}: {execution_time:.6f} seconds")
-
+        print(f"Graph with n={n} vertices and density={density}: {execution_time:.10f} seconds")
+        del graph,mst,vertices
 results={ "Number of Nodes":NN,"Density":ddensity,"Execution Time (sec)":EXEC_TIME}
 df = pd.DataFrame(results)
 df.to_csv('kruskal_results.csv', index=False)
