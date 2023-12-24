@@ -1,0 +1,12 @@
+Graph with n=100 vertices and density=0.1: 0.000909 seconds
+Graph with n=100 vertices and density=0.6: 0.005581 seconds
+Graph with n=1000 vertices and density=0.1: 0.106554 seconds
+Graph with n=1000 vertices and density=0.6: 0.675200 seconds
+Graph with n=5000 vertices and density=0.1: 2.941885 seconds
+Graph with n=5000 vertices and density=0.6: 18.940521 seconds
+Graph with n=7500 vertices and density=0.1: 6.862420 seconds
+Graph with n=7500 vertices and density=0.6: 42.119439 seconds
+Graph with n=10000 vertices and density=0.1: 12.537123 seconds
+Graph with n=10000 vertices and density=0.6: 78.311812 seconds
+
+

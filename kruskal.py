@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import os
 import time
+import pandas as pd
 
 class DisjointSet:
     def __init__(self, vertices):
@@ -81,7 +82,7 @@ def measure_execution_time_kruskal(graph, vertices):
     return mst,end_time - start_time
 
 # Test cases: n values and density values
-n_values = [100, 1000, 5000, 10000]
+n_values = [7500]
 density_values = [0.1,0.6]
 
 NN=[]
@@ -99,7 +100,7 @@ for n in n_values:
         NN.append(n)
         ddensity.append(density)
         EXEC_TIME.append(execution_time)
-        print(f"Graph with n={n} vertices and density={density}: {execution_time:.10f} seconds")
+        print(f"Graph with n={n} vertices and density={density}: {execution_time:.6f} seconds")
         del graph,mst,vertices
 results={ "Number of Nodes":NN,"Density":ddensity,"Execution Time (sec)":EXEC_TIME}
 df = pd.DataFrame(results)
