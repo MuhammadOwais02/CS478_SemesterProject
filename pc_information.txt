@@ -1,0 +1,30 @@
+shahzaib-PC [Dual Booted]
+-------------------- 
+OS: Ubuntu 22.04.3 LTS x86_64 
+Host: HP ProBook 440 G5 
+Kernel: 6.2.0-39-generic 
+Uptime: 1 day, 13 hours, 30 mins 
+Packages: 1843 (dpkg), 13 (snap) 
+Shell: bash 5.1.16 
+Resolution: 1366x768 
+DE: GNOME 42.9 
+WM: Mutter 
+WM Theme: Adwaita 
+Theme: Yaru-prussiangreen-dark [GTK2 
+Icons: Yaru-prussiangreen [GTK2/3] 
+Terminal: gnome-terminal 
+CPU: Intel i5-8250U (8) @ 3.400GHz 
+GPU: Intel UHD Graphics 620 
+Memory: 2716MiB / 11841MiB                          
+*-disk                    
+       description: ATA Disk
+       product: HGST HTS541010B7
+       physical id: 0.0.0
+       bus info: scsi@0:0.0.0
+       logical name: /dev/sda
+       version: 1A03
+       serial: WXP1E183R48F
+       size: 931GiB (1TB)
+       capabilities: gpt-1.00 partitioned partitioned:gpt
+       configuration: ansiversion=5 guid=97ab8a84-d2b3-45a5-9297-40ec685ea3c0 logicalsectorsize=512 sectorsize=4096
+
