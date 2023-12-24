@@ -95,7 +95,7 @@ for n in n_values:
         vertices = list(graph.keys())
         mst,execution_time = measure_execution_time_kruskal(graph, vertices)
         #-------
-        save_graph_plot(graph, mst, n, density, "./plots")
+        save_graph_plot(graph, mst, n, density, "./plots/kruskal_result_visualisations")
         #------
         NN.append(n)
         ddensity.append(density)
@@ -104,4 +104,4 @@ for n in n_values:
         del graph,mst,vertices
 results={ "Number of Nodes":NN,"Density":ddensity,"Execution Time (sec)":EXEC_TIME}
 df = pd.DataFrame(results)
-df.to_csv('kruskal_results.csv', index=False)
+df.to_csv('kruskal_result.csv', index=False)
