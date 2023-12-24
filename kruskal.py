@@ -63,13 +63,12 @@ def generate_random_graph(n, density):
     del vertices
     return graph
 
-def save_graph_plot(graph, minimum_spanning_tree, num_nodes, density, directory):
+def save_graph_plot(minimum_spanning_tree, num_nodes, density, directory):
     H = nx.Graph()
     H.add_edges_from(minimum_spanning_tree)
     pos_h = nx.spring_layout(H)
     plt.figure(figsize=(10, 8))
     nx.draw(H, pos_h, with_labels=True, font_weight='bold', node_size=70, node_color='lightcoral', font_size=3)
-    #nx.draw_networkx_edge_labels(H, pos_h,edge_labels={(e[0], e[1]): e[2]['weight'] for e in H.edges(data=True)})
     plt.title(f"Minimum Spanning Tree (Nodes: {num_nodes}, Density: {density})")
     plt.savefig(os.path.join(directory, str(num_nodes)+"_"+str(density)+"mst.png"))
     plt.close()
@@ -95,7 +94,7 @@ for n in n_values:
         vertices = list(graph.keys())
         mst,execution_time = measure_execution_time_kruskal(graph, vertices)
         #-------
-        save_graph_plot(graph, mst, n, density, "./plots/kruskal_result_visualisations")
+        save_graph_plot(mst, n, density, "./plots/kruskal_result_visualisations")
         #------
         NN.append(n)
         ddensity.append(density)
